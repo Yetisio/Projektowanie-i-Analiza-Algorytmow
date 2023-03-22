@@ -1,0 +1,3 @@
+﻿  Pierwszy_Miniprojekt.cpp
+C:\Users\Admin\Desktop\PIAA\Pierwszy_Miniprojekt\Pierwszy_Miniprojekt.cpp(23,15): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+  Pierwszy_Miniprojekt.vcxproj -> C:\Users\Admin\Desktop\PIAA\Pierwszy_Miniprojekt\x64\Debug\Pierwszy_Miniprojekt.exe

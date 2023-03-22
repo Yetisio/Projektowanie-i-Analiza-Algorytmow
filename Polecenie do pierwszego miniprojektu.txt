@@ -1,0 +1,111 @@
+Mikoprojekt 1
+UWAGA:
+Zadania należy przynieść na zajęcia i zaprezentować działanie programu prowadzącemu. Nie należy stosować szablonów STL ani innych bibliotek do implementacji ADT (listy, stosu, kolejki, słownika itp.). Można używać klasę string
+
+Terminy oddania projektów:
+Projekt 1. - do I tygodnia kwietna
+Projekt 2. - do I tygodnia po majówce
+Projekt 3. - do I tygodnia czerwca
+Projekt 4. - do przedostatnich zajęć
+
+Zad. 1. Napisz program implementujący tablicę dwuwymiarową alokowaną dynamicznie (rozmiar n wierszy i
+m kolumn), który będzie miał poniższe funkcje:
+(a) wypełniającą tablicę losowymi wartościami od 0 do x (x jest parametrem funkcji)
+(b) wyświetlającą zawartość tej tablicy,
+(c) znajdującą wartość maksymalną tablicy
+Proszę stworzyć do powyższego zadania odpowiednie menu.
+
+Zad. 2. Dla tablicy jednowymiarowej należy stworzyć funkcje (mogą stanowić rozszerzenie programu z zadania 1:
+(a) zapisująca tablicę jednowymiarową do pliku tekstowego
+(b) wczytującą tablicę jednowymiarową z pliku tekstowego
+(c) zapisująca tablicę jednowymiarową do pliku binarnego
+(d) wczytującą tablicę jednowymiarową z pliku binarnego
+Proszę stworzyć odpowiednie menu dla tych funkcji.
+
+Zad 3. Należy stworzyć funkcje rekurencyjną wyznaczającą:
+(a) x do potęgi p - prototyp funkcji: int Potega(int x, int p);
+(b) x! - prototyp funkcji: int Silnia(int x);
+
+Zad 4. Palindromem nazywamy takie słowo, które czytane z obu stron jest takie samo. Należy napisać funkcję
+rekurencyjną do przetestowania łańcucha znakowego w celu sprawdzenia, czy jest on palindromem.
+Prototyp takiej funkcji to bool jestPal(String testStr);. Np.: Słowa “kajak”, czy “1234321” są
+palindromami i dla nich funkcja powinna zwrócić true, ale słowo “PAMSI” już nim nie jest i dla niego
+funkcja powinna zwrócić false.
+Proszę zapisać ten program, ponieważ na kolejnych zajęciach będziemy dopisywali do niego dodatkową
+funkcjonalność.
+
+
+Zad 5. Należy napisać funkcję rekurencyjną, która będzie generowała wszystkie permutacje łańcucha znakowego przekazanego do tej funkcji.
+(a) Korzystając z funkcji jestPal z poprzednich zajęć zmodyfikuj problem generowania permutacji w
+taki sposób, aby dla każdej wygenerowanej permutacji program sprawdzał, czy jest to palindrom.
+Jeśli tak, to należy ten łańcuch zapisać do tablicy zawierającej znalezione palindromy palList
+zdefiniowanej globalnie.
+(b) Po stworzeniu tablicy z palindromami okaże się, że zawiera ona duplikaty. Należy stworzyć funkcję
+usunDup(), która usunie duplikaty z tablicy. Funkcja ta nie musi być rekurencyjna.
+
+Zad. 6 Należy zaimplementować listę jednokierunkową przechowującą elementy określonego typu (np.: int,
+float, itp.). Należy napisać funkcje wykonujące następujące operacje:
+(a) dodawanie elementu do listy
+(b) usuwanie pojedynczego elementu z listy
+(c) wyświetlanie zawartości listy
+(d) usuwanie wszystkich elementów z listy
+
+Zad. 7 Należy zaimplementować kolejkę przechowującą elementy określonego typu (np.: int, float, itp.). Należy
+napisać funkcje wykonujące następujące operacje:
+(a) dodawanie elementu do kolejki
+(b) usuwanie pojedynczego elementu z kolejki
+(c) wyświetlanie zawartości kolejki
+(d) usuwanie wszystkich elementów z kolejki
+
+Zad.8 . Należy wykonać zadania 6 -7 w formie obiektowej, tzn. stworzyć dwie klasy (Lista i Kolejka) wykonu-
+jące operacje jak w zadaniach 6 i 7.
+
+9. Należy zaimplementować tzw. kolejkę z dwoma końcami -> deque. Korzystając z implementacji deque
+należy stworzyć program, który będzie sprawdzał, czy podany łańcuch znakowy jest palindromem.
+Na wykładzie widzieli Państwo implementację ADT stosu i kolejki. Deque ADT łączy ze sobą funk-
+cjonalności obu tych implementacji. Będziemy mogli zatem dodawać i usuwać elementy z obu stron
+deque’a. Poniżej zamieszczono przykładowy interfejs Deque ADT:
+template <typename Object>
+class Deque {
+public:
+/**
+* Zwraca ilość obiektów przechowywanych w deque
+*/
+int rozmiar() const;
+/**
+* Zwraca true jeśli deque jest pusty
+*/
+bool isEmpty() const;
+/**
+* Zwraca pierwszy obiekt w deque.
+* Wyrzuca DequeEmptyException jeśli deque jest pusty
+*/
+Object& pierwszy() throw(DequeEmptyException);
+/**
+* Zwraca ostatni obiekt w deque.
+* Wyrzuca DequeEmptyException jeśli deque jest pusty
+*/
+Object& ostatni() throw(DequeEmptyException);
+/**
+* Dodaje obiekt do pocza̧tku deque’a.
+*/
+Object& wstawPierwszy(const Object& obj);
+/**
+* Usuwa pierwszy obiekt z deque.
+* Wyrzuca DequeEmptyException jeśli deque jest pusty
+*/
+2Object& usunPierwszy() throw(DequeEmptyException);
+*/
+/**
+* Dodaje obiekt na końcu deque’a.
+*/
+Object& wstawOstatni(const Object& obj);
+/**
+* Usuwa ostatni obiekt z deque.
+* Wyrzuca DequeEmptyException jeśli deque jest pusty
+*/
+Object& usunOstatni() throw(DequeEmptyException);
+
+
+UWAGA
+Na ocenę dostateczną należy wykonać zadania od 1 do 6, na ocenę dobrą należy wykonać zadania od 1 do 5 oraz zad. 8. (nie trzeba wykonywać zad. 6. i 7.) , a na ocenę bardzo dobrą należy wykonać wszystkie zadania z wyjątkiem zad. 6 i 7.
