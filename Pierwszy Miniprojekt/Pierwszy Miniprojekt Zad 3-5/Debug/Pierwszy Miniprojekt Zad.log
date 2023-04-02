@@ -1,4 +1,4 @@
 ﻿  Pierwszy Miniprojekt Zad.cpp
-C:\Users\Admin\Desktop\PIAA\Pierwszy Miniprojekt Zad\Pierwszy Miniprojekt Zad.cpp(74,12): warning C4101: "p": lokalna zmienna, do której nie istnieje odwołanie
-C:\Users\Admin\Desktop\PIAA\Pierwszy Miniprojekt Zad\Pierwszy Miniprojekt Zad.cpp(74,9): warning C4101: "x": lokalna zmienna, do której nie istnieje odwołanie
-  Pierwszy Miniprojekt Zad.vcxproj -> C:\Users\Admin\Desktop\PIAA\Pierwszy Miniprojekt Zad\Debug\Pierwszy Miniprojekt Zad.exe
+C:\Users\Lenovo\Desktop\Projektowanie-i-Analiza-Algorytmow\Pierwszy Miniprojekt\Pierwszy Miniprojekt Zad 3-5\Pierwszy Miniprojekt Zad.cpp(74,12): warning C4101: "p": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\Lenovo\Desktop\Projektowanie-i-Analiza-Algorytmow\Pierwszy Miniprojekt\Pierwszy Miniprojekt Zad 3-5\Pierwszy Miniprojekt Zad.cpp(74,9): warning C4101: "x": lokalna zmienna, do której nie istnieje odwołanie
+  Pierwszy Miniprojekt Zad.vcxproj -> C:\Users\Lenovo\Desktop\Projektowanie-i-Analiza-Algorytmow\Pierwszy Miniprojekt\Pierwszy Miniprojekt Zad 3-5\Debug\Pierwszy Miniprojekt Zad.exe

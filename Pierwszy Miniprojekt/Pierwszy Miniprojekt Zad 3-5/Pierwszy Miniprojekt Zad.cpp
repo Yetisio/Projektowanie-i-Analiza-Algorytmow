@@ -7,6 +7,7 @@
 using namespace std;
 
 vector<string> palList; // globalna tablica zawierająca znalezione palindromy
+
 int Potega(int x, int p) {
     if (p == 0) {
         return 1;
