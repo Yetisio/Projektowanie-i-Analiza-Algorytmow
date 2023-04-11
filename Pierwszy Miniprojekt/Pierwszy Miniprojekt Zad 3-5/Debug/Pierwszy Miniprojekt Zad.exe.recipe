@@ -2,7 +2,11 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
+<<<<<<< Updated upstream
       <FullPath>C:\Users\Lenovo\Desktop\Projektowanie-i-Analiza-Algorytmow\Pierwszy Miniprojekt\Pierwszy Miniprojekt Zad 3-5\Debug\Pierwszy Miniprojekt Zad.exe</FullPath>
+=======
+      <FullPath>C:\Users\Admin\Desktop\PIAA\Projektowanie-i-Analiza-Algorytmow\Pierwszy Miniprojekt\Pierwszy Miniprojekt Zad 3-5\Debug\Pierwszy Miniprojekt Zad.exe</FullPath>
+>>>>>>> Stashed changes
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

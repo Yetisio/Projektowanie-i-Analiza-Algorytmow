@@ -6,11 +6,11 @@ int main() {
     // Testowanie klasy Lista
     Lista<int> lista;
     lista.dodajL(1);
-    lista.dodajL(2);
+    lista.dodajL(22);
     lista.dodajL(3);
     lista.wypiszL();
 
-    lista.usunL(2);
+    lista.usunL(22);
     lista.wypiszL();
 
     lista.usunWszystkieL();
