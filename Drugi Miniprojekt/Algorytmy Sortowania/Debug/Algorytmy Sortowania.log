@@ -1,6 +1,6 @@
 ﻿  Algorytmy Sortowania.cpp
-C:\Users\Lenovo\Desktop\Projektowanie-i-Analiza-Algorytmow\Drugi Miniprojekt\Algorytmy Sortowania\introSort.h(71,37): warning C4244: "argument": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Lenovo\Desktop\Projektowanie-i-Analiza-Algorytmow\Drugi Miniprojekt\Algorytmy Sortowania\Algorytmy Sortowania.cpp(163): message : zobacz odwołanie do kompilowanego tworzenia wystąpienia „void hybridIntroSort<movie>(T *,int,int)” funkcji szablon
+C:\Users\Lenovo\Desktop\Projektowanie-i-Analiza-Algorytmow\Drugi Miniprojekt\Algorytmy Sortowania\introSort.cpp(67,33): warning C4244: "argument": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Lenovo\Desktop\Projektowanie-i-Analiza-Algorytmow\Drugi Miniprojekt\Algorytmy Sortowania\Algorytmy Sortowania.cpp(157): message : zobacz odwołanie do kompilowanego tworzenia wystąpienia „void hybridIntroSort<movie>(T *,int,int)” funkcji szablon
           with
           [
               T=movie
