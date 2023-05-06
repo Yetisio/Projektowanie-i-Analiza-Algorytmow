@@ -14,12 +14,7 @@
 
 
 using namespace std;
-void pressEnter() {
-    int c;
-    do
-        c = getchar();
-    while ((c != '\n') && (c != EOF));
-}
+
 
 struct movie {
     string name;  // nazwa filmu
@@ -31,27 +26,24 @@ struct movie {
 int main(int argc, char** argv) {
    
     // pliki
-    ifstream dataset;  // baza filmow (wczytywany plik)
+    ifstream dataset;  
     string dataset_name = "dane2.csv";
-    ofstream sorted_dataset;  // posortowana baza (zapisywany plik)
-    string sorted_dataset_name;
 
     // parsowanie .csv
-    string temp, line;  // pojedynczy wpis w bazie
-    char identifier;         // , lub "
+    string temp, line;  // jeden rekord
+    char identifier;    // , lub "
 
     // sortowania
     string sorts[3] = { "merge", "quick", "intro" };
 
     // testy
     unsigned int test = 0;    // numer testu
-    unsigned int nlimit = 0;  // limit n dla zapisu na sorted_dataset
-    unsigned int ntab[] = { 10000, 100000, 500000, 1000000, 1010294 };
+    unsigned int ntab[] = { 10000, 100000, 500000, 1000000, 1010293};
     unsigned int unrated, median;  // ilosc nieocenionych filmow, mediana ocen
     float average;                 // srednia ocen
 
     
-    cout << fixed << setprecision(3) << "\x1B[2J\x1B[H";  // precyzja wyswietlania + clear screen
+    
 
     for (unsigned int n : ntab)  
     {
@@ -125,7 +117,7 @@ int main(int argc, char** argv) {
             cout << "  Rekordow po filtracji: " << n - unrated << '\n'
             << "  Czas filtracji wzgledem oceny:   " << duration << " ms\n";
 
-       // pressEnter();
+      
 
         // struktury do przechowywania wynikow sortowan
         movie** sort_dataset = new movie * [size(sorts)];
@@ -169,7 +161,7 @@ int main(int argc, char** argv) {
             for (unsigned int j = 0; j < n - unrated; ++j)
                 average += sort_dataset[i][j].rating;  // average jako suma
             average /= n - unrated;
-            cout << "  Srednia ocen filmow dla danego sortowania:    " << average << '\n';
+            cout << "  Srednia ocen filmow :    " << average << '\n';
 
             // mediana
             median = 0;
@@ -177,14 +169,13 @@ int main(int argc, char** argv) {
                 median = sort_dataset[i][(n - unrated) / 2].rating;
             else
                 median = (sort_dataset[i][(n - unrated - 1) / 2].rating + sort_dataset[i][(n - unrated) / 2].rating) / 2;
-            cout << "  Mediana ocen filmow dla danego sortowania:    " << median << "\n";
+            cout << "  Mediana ocen filmow :    " << median << "\n";
         }
 
         
 
         cout << "\nKoniec proby " << test << "/" << size(ntab) << '\n';
-        pressEnter();
-        cout << "\x1B[2J\x1B[H"; 
+        
         
     }
 }
