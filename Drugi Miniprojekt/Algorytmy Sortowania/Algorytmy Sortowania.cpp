@@ -29,7 +29,6 @@ int main(int argc, char** argv) {
     ifstream dataset;  
     string dataset_name = "dane2.csv";
 
-    // parsowanie .csv
     string temp, line;  // jeden rekord
     char identifier;    // , lub "
 
@@ -42,26 +41,24 @@ int main(int argc, char** argv) {
     unsigned int unrated, median;  // ilosc nieocenionych filmow, mediana ocen
     float average;                 // srednia ocen
 
-    
-    
-
     for (unsigned int n : ntab)  
     {
         test++;
         cout << "Proba nr " << test << "/" << size(ntab) << ": n = " << n << '\n';
         movie* parsed_dataset = new movie[n];
 
-        // wczytywanie pliku
         unrated = 0;
         dataset.open(dataset_name);
 
-        if (!dataset.is_open()) {
+        if (!dataset.is_open()) 
+        {
             cout << "Problem z plikiem " + dataset_name;
             exit(1);
         }
 
-        getline(dataset, line);  // pominiecie headera
-        for (unsigned int i = 0; i < n; i++) {
+        getline(dataset, line);
+        for (unsigned int i = 0; i < n; i++) 
+        {
             // format pliku: indeks,nazwa,ocena
             getline(dataset, line);  // dzielenie pliku na linie
             stringstream split(line);
@@ -70,21 +67,25 @@ int main(int argc, char** argv) {
             // wczytywanie nazwy - pomiedzy " " lub zwykla oddzielona przecinkiem
             stringstream::pos_type pos = split.tellg();
             split >> identifier;
-            if (identifier == '"') {
+            if (identifier == '"') 
+            {
                 getline(split, parsed_dataset[i].name, '"');
                 split >> identifier;  // nie bierz pod uwage 
             }
-            else {
+            else 
+            {
                 split.seekg(pos);  // powrot
                 getline(split, parsed_dataset[i].name, ',');
             }
             // wczytywanie oceny
-            if (!(split >> parsed_dataset[i].rating)) {
+            if (!(split >> parsed_dataset[i].rating)) 
+            {
                 unrated++;
                 parsed_dataset[i].rating = -1;
             }
             // koniec pliku - zmiana n do liczby wczytanych filmow
-            if (dataset.eof()) {
+            if (dataset.eof()) 
+            {
                 cout << "Za malo danych w podanym pliku - wczytane dane filomowe: " << i << " / " << n << '\n';
                 n = i + 1;
             }
@@ -92,7 +93,8 @@ int main(int argc, char** argv) {
         dataset.close();
 
         // filtrowanie - usuwanie filmow bez ocen
-        if (unrated > 0) {
+        if (unrated > 0) 
+        {
             cout << " \n Filmy nie posiadajce oceny: " << unrated << '\n';
             
             cout << "\nFiltracja danych z pliku\n";
@@ -119,7 +121,7 @@ int main(int argc, char** argv) {
 
       
 
-        // struktury do przechowywania wynikow sortowan
+        //przechowywanie wynikow sortowan
         movie** sort_dataset = new movie * [size(sorts)];
         for (unsigned int i = 0; i < size(sorts); ++i)
             sort_dataset[i] = new movie[n - unrated];
@@ -128,38 +130,43 @@ int main(int argc, char** argv) {
                 sort_dataset[i][j] = filter_dataset[j];
         delete[] filter_dataset;
 
-        // sortowania
-        for (unsigned int i = 0; i < size(sorts); ++i) {
+        //sortowanie
+        for (unsigned int i = 0; i < size(sorts); ++i) 
+        {
             cout << "\nSortowanie ";
-            if (sorts[i] == "merge") {
+            if (sorts[i] == "merge") 
+            {
                 cout << "- mergesort\n";
                 duration_start = chrono::high_resolution_clock::now();
                 mergeSort(sort_dataset[i], 0, n - unrated - 1);
                 duration_end = chrono::high_resolution_clock::now();
             }
-            else if (sorts[i] == "quick") {
+            else if (sorts[i] == "quick") 
+            {
                 cout << "- quicksort\n";
                 duration_start = chrono::high_resolution_clock::now();
                 quickSort(sort_dataset[i], 0, n - unrated - 1);
                 duration_end = chrono::high_resolution_clock::now();
             }
-            else if (sorts[i] == "intro") {
+            else if (sorts[i] == "intro") 
+            {
                 cout << "- introsort\n";
                 duration_start = chrono::high_resolution_clock::now();
                 hybridIntroSort(sort_dataset[i], 0, n - unrated - 1);
                 duration_end = chrono::high_resolution_clock::now();
             }
-            else {
+            else 
+            {
                 cout << "Wskazane bledne sortowanie\n";
                 break;
             }
             duration = chrono::duration<double, milli>(duration_end - duration_start).count();
-            cout << "  Czas sortowania: " << duration << " ms\n";
+            cout << "  Czas sortowania:         " << duration << " ms\n";
 
             // srednia ocen
             average = 0;
             for (unsigned int j = 0; j < n - unrated; ++j)
-                average += sort_dataset[i][j].rating;  // average jako suma
+                average += sort_dataset[i][j].rating;  
             average /= n - unrated;
             cout << "  Srednia ocen filmow :    " << average << '\n';
 
@@ -171,8 +178,6 @@ int main(int argc, char** argv) {
                 median = (sort_dataset[i][(n - unrated - 1) / 2].rating + sort_dataset[i][(n - unrated) / 2].rating) / 2;
             cout << "  Mediana ocen filmow :    " << median << "\n";
         }
-
-        
 
         cout << "\nKoniec proby " << test << "/" << size(ntab) << '\n';
         

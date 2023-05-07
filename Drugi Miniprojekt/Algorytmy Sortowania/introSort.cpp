@@ -3,13 +3,14 @@
 
 template <typename T>
 void insertionSort(T* array, int start, int end) {
-T key; // klucz (do porownywania)
+T key; 
 int i, j;
-for (i = start + 1; i < end; i++) {
-key = array[i]; // zaczynamy od 2 elementu arraylicy
+for (i = start + 1; i < end; i++) 
+{
+key = array[i]; 
 j = i - 1;
-// porownanie klucza z kolejnymi poprzednimi elementami
-while (j >= start && key < array[j]) {
+while (j >= start && key < array[j]) 
+{
 array[j + 1] = array[j];
 --j;
 }
@@ -27,7 +28,8 @@ else
 largest = i;
 if (r <= heap_size && array[r] > array[largest])
 largest = r;
-if (largest != i) {
+if (largest != i) 
+{
 temp = array[largest];
 array[largest] = array[i];
 array[i] = temp;
@@ -40,7 +42,8 @@ void heapSort(T* array, int heap_size) {
 T temp;
 for (int i = heap_size / 2; i > 0; i--)
 heapify(array, heap_size, i);
-for (int i = heap_size; i > 1; i--) {
+for (int i = heap_size; i > 1; i--) 
+{
 temp = array[i];
 array[i] = array[1];
 array[1] = temp;
@@ -48,10 +51,10 @@ heap_size--;
 heapify(array, heap_size, 1);
 }
 }
-
 template <typename T>
 void introSort(T* array, int start, int end, int maxdepth) {
-if (maxdepth <= 0) {
+if (maxdepth <= 0) 
+{
 heapSort(array, end - start);
 return;
 }
@@ -61,7 +64,6 @@ introSort(array, start, i, maxdepth - 1);
 if (end - i > 9)
 introSort(array, i + 1, end, maxdepth - 1);
 }
-
 template <typename T>
 void hybridIntroSort(T* array, int start, int end) {
 introSort(array, start, end, (2 * log(end - start)));
