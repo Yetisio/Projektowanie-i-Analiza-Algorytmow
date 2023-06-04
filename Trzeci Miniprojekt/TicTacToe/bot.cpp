@@ -1,100 +1,90 @@
 #include <vector>
+#include <algorithm>
+#include <limits>
 #include "bot.h"
 using namespace std;
-
-
-int BOT::minimax(Plansza& plansza, int glebokosc, int alfa, int beta, bool maksymalizuj)  
+int BOT::minimax(Plansza plansza, int glebokosc,int alfa, int beta, bool maksymalizuj)
 {
-    if (glebokosc >= limit_glebokosci || plansza.stanGry() != 0) 
+    int aktualnyStanGry = plansza.stanGry();
+
+    if (aktualnyStanGry != 0 || plansza.jestPelna() || glebokosc == 0)
+        return aktualnyStanGry;
+    if (maksymalizuj) 
     {
-        if (plansza.stanGry() == 1)
-            return -10;
-        else if (plansza.stanGry() == 2)
-            return 10;
-        else
-            return 0;
-    }
+        int najlepszaWartosc = INT_MIN;
 
-    if (maksymalizuj) {
-        int najlepszaWartosc = -1000;
-
-        for (int i = 0; i < plansza.pobierzRozmiar(); i++) 
+        for (int i = 1; i < plansza.pobierzRozmiar()+1; i++) 
         {
-            for (int j = 0; j < plansza.pobierzRozmiar(); j++) {
-                int wiersz = i + 1;
-
-                int kolumna = j + 1;
-                plansza.zmienTure(1);
-                plansza.ustaw(wiersz, kolumna);
-
-                int wartoscRuchu = minimax(plansza, glebokosc + 1, alfa, beta, false);
-
-                plansza.usun(wiersz, kolumna);
-
-                najlepszaWartosc = max(najlepszaWartosc, wartoscRuchu);
-                alfa = max(alfa, najlepszaWartosc);
-
-                if (alfa >=  beta)
-                    return alfa;
+            for (int j = 1; j < plansza.pobierzRozmiar()+1; j++)
+            {
+                if (!plansza.jestZajete(i, j))
+                {
+                    plansza.zmienTure(1);
+                    plansza.ustaw(i, j);
+                    najlepszaWartosc=max(najlepszaWartosc, minimax(plansza, glebokosc-1, alfa, beta, false));
+                    plansza.usun(i, j);
+                    alfa = max(alfa, najlepszaWartosc);
+                    if (alfa >= beta)
+                        return alfa;
+                }
             }
-            return najlepszaWartosc;
         }
-        
+        return najlepszaWartosc;
     }
     else 
     {
-        int najlepszaWartosc = 1000;
+        int najlepszaWartosc = INT_MAX;
 
-        for (int i = 0; i < plansza.pobierzRozmiar(); i++) 
+        for (int i = 1; i < plansza.pobierzRozmiar()+1; i++) 
         {
-            for (int j = 0; j < plansza.pobierzRozmiar(); j++) 
+            for (int j = 1; j < plansza.pobierzRozmiar()+1; j++)
             {
-                int wiersz = i + 1;
-                int kolumna = j + 1;
-                plansza.zmienTure(0);
-                plansza.ustaw(wiersz, kolumna);
-
-                int wartoscRuchu = minimax(plansza, glebokosc + 1, alfa, beta, false);
-
-                plansza.usun(wiersz, kolumna);
-
-                najlepszaWartosc = max(najlepszaWartosc, wartoscRuchu);
-                beta = max(beta, najlepszaWartosc);
-
-                if (beta <= alfa)
-                    return beta;
-            }
-            return najlepszaWartosc;
+                if (!plansza.jestZajete(i, j))
+                {
+                    plansza.zmienTure(0);
+                    plansza.ustaw(i, j);
+                    najlepszaWartosc = min(najlepszaWartosc,minimax(plansza, glebokosc-1, alfa, beta, true));
+                    plansza.usun(i, j);
+                    beta = min(beta, najlepszaWartosc);
+                    if (beta <= alfa)
+                        return beta;
+                }
+            }        
         }
+        return najlepszaWartosc;
     }
 }
 
-void BOT::ruch(Plansza& plansza) 
+void BOT::ruch(Plansza plansza) 
 {
-    int najlepszaWartosc = 1000;
-    int pom;
-    pair<int, int> najlepszyRuch;
-
-    for (int i = 0; i < plansza.pobierzRozmiar(); i++)
+   
+    int najlepszaWartosc = INT_MAX;
+    for (int i = 1; i < plansza.pobierzRozmiar()+1; i++)
     {
-        for (int j = 0; j < plansza.pobierzRozmiar(); j++)
+        for (int j = 1; j < plansza.pobierzRozmiar()+1; j++)
         {
-            int wiersz = i + 1;
-            int kolumna = j + 1;
-            plansza.zmienTure(0);
-            plansza.ustaw(wiersz, kolumna);
-
-            int wartoscRuchu = minimax(plansza, 0, -1000, 1000, false);
-
-            plansza.usun(wiersz, kolumna);
-
-            if (wartoscRuchu < najlepszaWartosc) 
+            if (!plansza.jestZajete(i, j))
             {
-                najlepszaWartosc = wartoscRuchu;
-                najlepszyRuch = make_pair(wiersz, kolumna);
+                plansza.zmienTure(0);
+                plansza.ustaw(i, j);
+                int wartoscRuchu = minimax(plansza,glebokosc_max, INT_MIN, INT_MAX, true);
+                plansza.usun(i, j);
+                if (wartoscRuchu < najlepszaWartosc)
+                {
+                    x = i;
+                    y = j;
+                    najlepszaWartosc = wartoscRuchu;
+
+                }
             }
         }
-
-      
     }
+}
+int BOT::getterX()
+{
+    return x;
+}
+int BOT::getterY()
+{
+    return y;
 }

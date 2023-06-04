@@ -5,7 +5,7 @@ class Plansza {
 public:
     Plansza() {};
     Plansza(int rozmiar, int do_wygranej, char gracz);
-    int pobierzRozmiar() 
+    int pobierzRozmiar() const
     {
         return rozmiar; 
     }
@@ -20,7 +20,10 @@ public:
     char sprawdz(int x, int y);                    // sprawdzanie znaku na polu
     bool jestZajete(int x, int y);                 // sprawdzanie czy pole jest zajête
     bool jestPelna();                              // sprawdzanie czy plansza jest pe³na
-    bool jestTuraGracza();                         // sprawdzanie czy jest tura gracza
+    bool jestTuraGracza()const                      // sprawdzanie czy jest tura gracza
+    {
+        return tura;
+    }                         
     int stanGry();                                 // sprawdzanie stanu gry
 
 private:
