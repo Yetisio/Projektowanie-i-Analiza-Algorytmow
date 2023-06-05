@@ -21,7 +21,7 @@ int main()
         system("cls");
         cout << " ====  M E N U  =====\n";
         cout << "1. Ustawienia gry\n";
-        cout << "2. Nowa gra\n";
+        cout << "2. Nowa gra aby wybrac nalezy przejsc przez punkt pierwszy\n";
         cout << "3. Krotka instrukcja jak grac\n";
         cout << "4. Wyjscie\n";
         cout << endl << "Wpisz numer polecnia z listy menu ---> ";
@@ -37,6 +37,18 @@ int main()
                 cin >> do_wygranej;
                 cout << "Wybierz znak gracza jakim chcesz grac ( x/o ): ";
                 cin >> symbol_gracza;
+                if (rozmiar < 3)
+                {
+                    rozmiar = 3;
+                }
+                if (do_wygranej < 2)
+                {
+                    do_wygranej = 2;
+                }
+                if (do_wygranej > rozmiar)
+                {
+                    do_wygranej = rozmiar;
+                }
                 if (symbol_gracza == 'x')
                     symbol_bot = 'o';
                 else
@@ -54,7 +66,7 @@ int main()
             {
                 plansza->resetuj();
                 plansza->wyswietl();
-
+                plansza->zmienTure(plansza->losujKtoPierwszy());
                 while (plansza->stanGry() == 0 && !plansza->jestPelna()) //do remisu lub wygranej
                 {
                     // ruch gracza
@@ -98,7 +110,7 @@ int main()
                     //ruch bota
                     else
                     {
-                        cout << "Komputer mysli nad ruchem \n";
+                        cout << "Komputer wykonuje ruch \n";
                         bot->ruch(*plansza);
                         plansza->ustaw(bot->getterX(), bot->getterY());
                         plansza->zmienTure(1);
@@ -120,9 +132,9 @@ int main()
                 }
                 cout << "Czy chcesz zagrac ponownie? (t/n): ";
                 cin >> odp;
-                delete bot;
-                delete plansza;
             } while (odp == 't');
+            delete bot;
+            delete plansza;
             break;
         case 3:
             cout << "1. Plansza - gra toczy sie na planszy skladajacej sie z siatki N x N, gdzie N jest zalezne od ciebie, w ustawieniach gry\n";

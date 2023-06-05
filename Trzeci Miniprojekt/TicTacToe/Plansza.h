@@ -13,6 +13,7 @@ public:
     { 
         gracz ? tura = 1 : tura = 0; 
     }
+    int losujKtoPierwszy();
     void wyswietl();                               // wyœwietlanie planszy
     void ustaw(int x, int y);                            // ustawianie pola na planszy
     void usun(int x, int y);                             // usuwanie pola z planszy

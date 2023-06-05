@@ -3,6 +3,8 @@
 #include <iomanip>
 #include <string>
 #include <algorithm>
+#include <ctime>
+#include <cstdlib>
 #include "Plansza.h"
 using namespace std;
 
@@ -35,25 +37,13 @@ Plansza::Plansza(int rozmiar, int do_wygranej, char symbol_gracza) : rozmiar(roz
     }
     tura = 1;
 }
-
-//void Plansza::wyswietl() 
-//{
-//    for (int i = 0; i < rozmiar; i++) 
-//    {
-//        for (int j = 0; j < rozmiar; j++) 
-//        {
-//            cout << pola[i][j];
-//            if (j < rozmiar - 1)
-//                cout << "  |  ";
-//        }
-//        cout << endl;
-//        if (i < rozmiar - 1) {
-//            for (int k = 0; k < rozmiar * 4 - 1; k++)
-//                cout << "-";
-//            cout << endl;
-//        }
-//    }
-//}
+int Plansza::losujKtoPierwszy()
+{
+    int pierwszy;
+    srand(static_cast<unsigned int>(time(nullptr)));
+    pierwszy = rand() % 2;
+    return pierwszy;
+}
 void Plansza::wyswietl()
 {
     unsigned char pom = 151;
