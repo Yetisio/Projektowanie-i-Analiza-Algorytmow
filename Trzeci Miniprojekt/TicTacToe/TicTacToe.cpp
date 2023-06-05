@@ -29,8 +29,7 @@ int main()
         switch (wybor)
         {
         case 1:
-            do
-            {
+            
                 cout << "\nPodaj rozmiar planszy ( minimum 3x3 ): ";
                 cin >> rozmiar;
                 cout << "Podaj ilosc znakow w jednej linii do wygranej: ";
@@ -56,7 +55,7 @@ int main()
                 cout << "Glebokosc algorytmu: ";
                 cin >> glebokosc_m;
                 
-            } while (rozmiar<3);
+            
             
             break;
         case 2:
@@ -130,7 +129,7 @@ int main()
                     }
                     cout << '\n';
                 }
-                cout << "Czy chcesz zagrac ponownie? (t/n): ";
+                cout << "Czy chcesz zagrac ponownie na tych samych ustawieniach? (t/n): ";
                 cin >> odp;
             } while (odp == 't');
             delete bot;
